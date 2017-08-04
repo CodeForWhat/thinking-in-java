@@ -1,0 +1,47 @@
+1package indi.learn.io;
+2
+3import java.io.BufferedReader;
+4import java.io.BufferedWriter;
+5import java.io.FileNotFoundException;
+6import java.io.FileReader;
+7import java.io.FileWriter;
+8import java.io.IOException;
+9import java.io.PrintWriter;
+10
+11public class BasicFileOutput {
+12
+13	public static void main(String[] args) {
+14		String filename = "BasicFileOutput.out";
+15		PrintWriter pw = null;
+16		BufferedReader br = null;
+17		try {
+18			br = new BufferedReader(new FileReader(
+19					"E:\\GitRepoForEclipseLearn\\thinking-in-java\\src\\main\\java\\indi\\learn\\io\\BasicFileOutput.java"));
+20			pw = new PrintWriter(new BufferedWriter(new FileWriter(filename)));
+21			int count = 1;
+22			String line = null;
+23			while((line = br.readLine()) != null) {
+24				pw.println(count++ + line);
+25			}
+26		} catch (FileNotFoundException e) {
+27			// TODO Auto-generated catch block
+28			e.printStackTrace();
+29		} catch(IOException e) {
+30			e.printStackTrace();
+31		} finally {
+32			if (pw != null) {
+33				pw.close();
+34			}
+35			
+36			if(br != null) {
+37				try {
+38					br.close();
+39				} catch (IOException e) {
+40					// TODO Auto-generated catch block
+41					e.printStackTrace();
+42				}
+43			}
+44		}
+45	}
+46
+47}
